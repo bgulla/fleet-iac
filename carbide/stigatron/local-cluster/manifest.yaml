@@ -10,10 +10,8 @@ metadata:
   namespace: kube-system
 spec:
   repo: https://rancherfederal.github.io/carbide-charts/
-  chart: stigatron-ui
+  chart: "stigatron-ui"
   targetNamespace: carbide-stigatron-system
   # version: v1.12.0 
   set:
-    global:
-      cattle: 
-        systemDefaultRegistry: "rgcrprod.azurecr.us"
+    global.cattle.systemDefaultRegistry: "rgcrprod.azurecr.us"
