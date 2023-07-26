@@ -1,0 +1,13 @@
+defaultNamespace: carbide-stigatron-system
+helm:
+  repo: https://rancherfederal.github.io/carbide-charts/
+  chart: stigatron
+  releaseName: stigatron
+  values:
+    heimdall2:
+      heimdall:
+        rcidf:
+          tag: "0.1.2-RC2"
+
+dependsOn: 
+- name: stigatron-carbide-stigatron-cis-crd

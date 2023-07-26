@@ -1,0 +1,8 @@
+defaultNamespace: cis-operator-system
+helm:
+  repo: https://charts.rancher.io
+  chart: rancher-cis-benchmark
+  releaseName: rancher-cis-benchmark
+
+dependsOn: 
+- name: stigatron-carbide-stigatron-cis-crd
