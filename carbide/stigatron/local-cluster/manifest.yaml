@@ -1,4 +1,8 @@
-# installCRDs: "true"
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: carbide-stigatron-system
+---  
 apiVersion: helm.cattle.io/v1
 kind: HelmChart
 metadata:
