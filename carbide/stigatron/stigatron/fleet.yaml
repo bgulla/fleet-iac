@@ -10,4 +10,4 @@ helm:
           tag: "0.1.2-RC2"
 
 dependsOn: 
-- name: stigatron-carbide-stigatron-cis-crd
+- name: cis-benchmark-carbide-carbide-stigatron-cis-crd
