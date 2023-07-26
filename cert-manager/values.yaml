@@ -1,1 +1,14 @@
-installCRDs: "true"
+# installCRDs: "true"
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: cert-manager
+  namespace: kube-system
+spec:
+  repo: https://charts.jetstack.io
+  chart: cert-manager
+  targetNamespace: cert-manager
+  version: v1.12.0 
+  set:
+    installCRDs: "true" 
+    
