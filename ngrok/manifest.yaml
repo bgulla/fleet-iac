@@ -8,5 +8,5 @@ spec:
   repo: https://zufardhiyaulhaq.com/ngrok-operator/charts/releases/
   chart: ngrok-operator
   targetNamespace: ngrok-operator
-  version: v1.3.0
+#  version: v1.3.0
     
