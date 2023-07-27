@@ -1,0 +1,13 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: synology-csi
+  namespace: kube-system
+spec:
+  repo: https://christian-schlichtherle.github.io/synology-csi-chart
+  chart: synology-csi
+  targetNamespace: synology-csi
+  set:
+    clientInfoSecret.name: synology-creds
+    clientInfoSecret.create: "false"
+    
