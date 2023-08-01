@@ -1,0 +1,4 @@
+defaultNamespace: cattle-neuvector-system
+helm:
+  chart: ./chart
+  releaseName: neuvector-crd
