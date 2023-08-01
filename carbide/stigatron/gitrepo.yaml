@@ -1,0 +1,17 @@
+kind: GitRepo
+apiVersion: fleet.cattle.io/v1alpha1
+metadata:
+  name: stigatron
+  namespace: fleet-default
+spec:
+  repo: https://github.com/atoy3731/fleet-security-demo.git
+  branch: main
+  targets:
+  - name: carbide
+    clusterSelector:
+      matchLabels:
+        carbide: enabled
+  paths:
+  - "./carbide/stigatron/cis/crd"
+  - "./carbide/stigatron/cis/operator"
+  - "./carbide/stigatron/stigatron"

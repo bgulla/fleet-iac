@@ -1,0 +1,6 @@
+defaultNamespace: homepage
+helm:
+  repo: https://jameswynn.github.io/helm-charts
+  chart: homepage
+  valuesFiles:
+    - ./values.yaml

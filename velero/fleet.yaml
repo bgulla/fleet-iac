@@ -1,0 +1,8 @@
+defaultNamespace: velero
+helm:
+  repo: https://vmware-tanzu.github.io/helm-charts
+  chart: velero
+  version: 3.1.4
+  releaseName: velero
+  valuesFiles:
+    - values.yaml

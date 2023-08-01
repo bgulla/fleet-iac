@@ -1,0 +1,11 @@
+defaultNamespace: cattle-neuvector-system
+helm:
+  repo: https://neuvector.github.io/neuvector-helm/
+  chart: core
+  version: 2.4.2
+  releaseName: neuvector-core
+  valuesFiles:
+  - values.yaml
+
+dependsOn:
+- name: neuvector-neuvector-crd

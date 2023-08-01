@@ -1,0 +1,46 @@
+deployNodeAgent: true
+
+initContainers:
+  - name: velero-plugin-for-aws
+    image: velero/velero-plugin-for-aws:v1.3.0
+    imagePullPolicy: IfNotPresent
+    volumeMounts:
+      - mountPath: /target
+        name: plugins
+
+configuration:
+  provider: aws
+  defaultVolumesToRestic: true
+  backupStorageLocation:
+    provider: aws
+    bucket: critical-velero-backup
+    config:
+      region: minio
+      s3ForcePathStyle: "true"
+      s3Url: "http://s3.media.lark.lol"
+  volumeSnapshotLocation:
+    name: default
+    config:
+      region: minio
+      profile: "default"
+
+credentials:
+  useSecret: true
+  name: "aws-creds"
+  # secretContents:
+  #   cloud: |-
+  #     [default]
+  #     aws_access_key_id=REDACTED
+  #     aws_secret_access_key=REDACTED
+
+# schedules:
+#   critical-backup:
+#     labels:
+#       env: critical
+#     schedule: "0 3 * * *"
+#     useOwnerReferencesInBackup: false
+#     template:
+#       ttl: "240h"
+#       includedNamespaces:
+#       - gitea
+#       - vault
