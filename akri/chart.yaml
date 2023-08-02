@@ -1,0 +1,13 @@
+# installCRDs: "true"
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: akri
+  namespace: kube-system
+spec:
+  repo: https://project-akri.github.io/akri/
+  chart: akri-helm-charts/akri-dev
+  targetNamespace: akri
+  set:
+    kubernetesDistro: k3s
+    
