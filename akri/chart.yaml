@@ -5,7 +5,7 @@ metadata:
   namespace: kube-system
 spec:
   repo: https://project-akri.github.io/akri/
-  chart: akri-helm-charts/akri
+  chart: akri
   targetNamespace: akri
   set:
     kubernetesDistro: k3s
