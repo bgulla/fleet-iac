@@ -9,4 +9,4 @@ spec:
   targetNamespace: akri
   set:
     kubernetesDistro: k3s
-    
+    udev.discovery.enabled: true
