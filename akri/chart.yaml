@@ -12,4 +12,4 @@ spec:
     udev.discovery.enabled: "true"
     udev.configuration.enabled: "true"
     udev.configuration.discoveryDetails.udevRules[0]: 'SUBSYSTEM=="usb"\, ATTR{idVendor}=="0bda", ATTR{idProduct}=="2838"'
-    prometheus.enabled: "true"
+    prometheus.enabled: "false"
