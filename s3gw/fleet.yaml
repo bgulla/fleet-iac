@@ -6,3 +6,5 @@ helm:
     publicDomain: lark.lol
     ui:
       publicDomain: lark.lol
+    ingress:
+      enabled: false
