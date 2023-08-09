@@ -3,5 +3,4 @@ helm:
   repo: https://aquarist-labs.github.io/s3gw-charts/
   chart: s3gw
   values:
-    ui:
-      publicDomain: lark.lol
+    publicDomain: lark.lol
