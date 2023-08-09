@@ -4,3 +4,5 @@ helm:
   chart: s3gw
   values:
     publicDomain: lark.lol
+    ui:
+      publicDomain: lark.lol
