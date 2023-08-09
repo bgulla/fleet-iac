@@ -3,8 +3,5 @@ helm:
   repo: https://aquarist-labs.github.io/s3gw-charts/
   chart: s3gw
   values:
-    publicDomain: lark.lol
-    ui:
-      publicDomain: lark.lol
     ingress:
       enabled: false
