@@ -1,0 +1,17 @@
+apiVersion: ui.cattle.io/v1
+kind: NavLink
+metadata:
+  creationTimestamp: '2023-08-10T09:17:14Z'
+  generation: 1
+  managedFields:
+    - apiVersion: ui.cattle.io/v1
+      manager: agent
+  name: openwebrx-http
+spec:
+  label: SDR Radio
+  target: _blank
+  toService:
+    name: openwebrx
+    namespace: openwebrx
+    port: '8073'
+    scheme: http
