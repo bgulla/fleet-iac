@@ -1,0 +1,24 @@
+apiVersion: akri.sh/v0
+kind: Configuration
+metadata:
+  name: openwebrx-job
+  namespace: akri
+spec:
+  brokerSpec:
+    brokerPodSpec:
+      template:
+        metadata:
+          labels: 
+            app: openwebrx
+      containers:
+      - args:
+        image: jketterl/openwebrx:stable
+        imagePullPolicy: Always
+        name: openwebrx-job
+  capacity: 1
+  discoveryHandler:
+    discoveryDetails: |
+      udevRules:
+      - SUBSYSTEM=="usb"\, ATTR{idVendor}=="0bda", ATTR{idProduct}=="2838"
+    name: udev
+--- 
