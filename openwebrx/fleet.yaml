@@ -1,0 +1,5 @@
+defaultNamespace: openwebrx
+helm:
+  repo: https://bgulla.github.io/charts
+  chart: openwebrx
+  releaseName: openwebrx
