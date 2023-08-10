@@ -1,0 +1,43 @@
+apiVersion: policies.kubewarden.io/v1
+kind: ClusterAdmissionPolicy
+metadata:
+  name: verify-image-signatures
+spec:
+  mode: protect
+  module: harbor.lark.lol/policies/verify-image-signatures:v0.1.7
+  mutating: true
+  policyServer: default
+  rules:
+    - apiGroups:
+        - ''
+        - apps
+        - batch
+      apiVersions:
+        - v1
+      operations:
+        - CREATE
+        - UPDATE
+      resources:
+        - pods
+        - deployments
+        - statefulsets
+        - replicationcontrollers
+        - jobs
+        - cronjobs
+  settings:
+    signatures:
+      - image: harbor.lark.lol/rancher/*
+        pubKeys:
+          - |
+            -----BEGIN PUBLIC KEY-----
+            MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE5zlXeLmRxBHbVmDRZpnCFdzKhyKO
+            tCAZva7CLlk/6gxvCM0QkIKznfaGTRMMYTaHMdQSau6yulDLlpokA++i8Q==
+            -----END PUBLIC KEY-----
+      - image: harbor.lark.lol/longhornio/*
+        pubKeys:
+          - |
+            -----BEGIN PUBLIC KEY-----
+            MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAE5zlXeLmRxBHbVmDRZpnCFdzKhyKO
+            tCAZva7CLlk/6gxvCM0QkIKznfaGTRMMYTaHMdQSau6yulDLlpokA++i8Q==
+            -----END PUBLIC KEY-----
+  timeoutSeconds: 10
