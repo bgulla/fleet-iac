@@ -13,4 +13,4 @@ spec:
     udev.configuration.enabled: "true"
     udev.configuration.discoveryDetails.udevRules[0]: 'SUBSYSTEM=="usb"\, ATTR{idVendor}=="0bda", ATTR{idProduct}=="2838"'
     prometheus.enabled: "false"
-    #udev.configuration.brokerPod.image.repository: "nginx" 
+    udev.configuration.brokerPod.image.repository: "nginx" 
