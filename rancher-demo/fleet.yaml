@@ -1,5 +1,0 @@
-defaultNamespace: default
-helm:
-  repo: https://bgulla.github.io/charts
-  chart: rancher-demo
-  releaseName: rancher-demo

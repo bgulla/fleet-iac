@@ -4,110 +4,110 @@ helm:
   releaseName: rancher-monitoring
   repo: https://charts.rancher.io
   chart: rancher-monitoring
-  version: 100.1.3+up19.0.3
+  version: 102.0.1-up40.1.2
   values:
     k3sServer:
       enabled: true
-    prometheus:
-      prometheusSpec:
-        resources:
-          limits:
-            cpu: 3500m
-            memory: 5000Mi
-          requests:
-            cpu: 250m
-            memory: 250Mi
-        retention: 4h
-      ingress:
-        enabled: true
-        annotations:
-          cert-manager.io/cluster-issuer: selfsigned-cluster-issuer
-          traefik.ingress.kubernetes.io/router.middlewares: cattle-monitoring-system-basic-auth@kubernetescrd
-        paths:
-          - /
-        pathType: Prefix
+#     prometheus:
+#       prometheusSpec:
+#         resources:
+#           limits:
+#             cpu: 3500m
+#             memory: 5000Mi
+#           requests:
+#             cpu: 250m
+#             memory: 250Mi
+#         retention: 4h
+#       ingress:
+#         enabled: true
+#         annotations:
+#           cert-manager.io/cluster-issuer: selfsigned-cluster-issuer
+#           traefik.ingress.kubernetes.io/router.middlewares: cattle-monitoring-system-basic-auth@kubernetescrd
+#         paths:
+#           - /
+#         pathType: Prefix
 
-diff:
-  comparePatches:
-    - apiVersion: admissionregistration.k8s.io/v1
-      kind: MutatingWebhookConfiguration
-      name: rancher-monitoring-admission
-      operations:
-        - {"op":"remove", "path":"/webhooks"}
-    - apiVersion: admissionregistration.k8s.io/v1
-      kind: ValidatingWebhookConfiguration
-      name: rancher-monitoring-admission
-      operations:
-        - {"op":"remove", "path":"/webhooks"}
+# diff:
+#   comparePatches:
+#     - apiVersion: admissionregistration.k8s.io/v1
+#       kind: MutatingWebhookConfiguration
+#       name: rancher-monitoring-admission
+#       operations:
+#         - {"op":"remove", "path":"/webhooks"}
+#     - apiVersion: admissionregistration.k8s.io/v1
+#       kind: ValidatingWebhookConfiguration
+#       name: rancher-monitoring-admission
+#       operations:
+#         - {"op":"remove", "path":"/webhooks"}
 
-targetCustomizations:
-- name: fleet01
-  helm:
-    values:
-      prometheus:
-        ingress:
-          hosts:
-            - prometheus.fleet01.54.229.163.180.sslip.io
-          tls:
-            - secretName: prometheus-ingress-tls
-              hosts:
-                - prometheus.fleet01.54.229.163.180.sslip.io
-  clusterName: fleet01
-- name: fleet02
-  helm:
-    values:
-      prometheus:
-        ingress:
-          hosts:
-            - prometheus.fleet02.34.240.231.157.sslip.io
-          tls:
-            - secretName: prometheus-ingress-tls
-              hosts:
-                - prometheus.fleet02.34.240.231.157.sslip.io
-  clusterName: fleet02
-- name: fleet03
-  helm:
-    values:
-      prometheus:
-        ingress:
-          hosts:
-            - prometheus.fleet03.34.244.180.111.sslip.io
-          tls:
-            - secretName: prometheus-ingress-tls
-              hosts:
-                - prometheus.fleet03.34.244.180.111.sslip.io
-  clusterName: fleet03
-- name: central
-  helm:
-    values:
-      prometheus:
-        ingress:
-          hosts:
-            - prometheus.central.54.75.75.230.sslip.io
-          tls:
-            - secretName: prometheus-ingress-tls
-              hosts:
-                - prometheus.central.54.75.75.230.sslip.io
-      grafana:
-        sidecar:
-          dashboards:
-            multicluster:
-              global:
-                enabled: true
-              etcd:
-                enabled: true
-          datasources:
-            url: http://prometheus-operated.central-monitoring-system:9090/
-  clusterName: central
-#- name: edge-clusters
-#  helm:
-#    values:
-#      grafana:
-#        enabled: true
-#  clusterSelector:
-#    matchLabels:
-#      role: edge
+# targetCustomizations:
+# - name: fleet01
+#   helm:
+#     values:
+#       prometheus:
+#         ingress:
+#           hosts:
+#             - prometheus.fleet01.54.229.163.180.sslip.io
+#           tls:
+#             - secretName: prometheus-ingress-tls
+#               hosts:
+#                 - prometheus.fleet01.54.229.163.180.sslip.io
+#   clusterName: fleet01
+# - name: fleet02
+#   helm:
+#     values:
+#       prometheus:
+#         ingress:
+#           hosts:
+#             - prometheus.fleet02.34.240.231.157.sslip.io
+#           tls:
+#             - secretName: prometheus-ingress-tls
+#               hosts:
+#                 - prometheus.fleet02.34.240.231.157.sslip.io
+#   clusterName: fleet02
+# - name: fleet03
+#   helm:
+#     values:
+#       prometheus:
+#         ingress:
+#           hosts:
+#             - prometheus.fleet03.34.244.180.111.sslip.io
+#           tls:
+#             - secretName: prometheus-ingress-tls
+#               hosts:
+#                 - prometheus.fleet03.34.244.180.111.sslip.io
+#   clusterName: fleet03
+# - name: central
+#   helm:
+#     values:
+#       prometheus:
+#         ingress:
+#           hosts:
+#             - prometheus.central.54.75.75.230.sslip.io
+#           tls:
+#             - secretName: prometheus-ingress-tls
+#               hosts:
+#                 - prometheus.central.54.75.75.230.sslip.io
+#       grafana:
+#         sidecar:
+#           dashboards:
+#             multicluster:
+#               global:
+#                 enabled: true
+#               etcd:
+#                 enabled: true
+#           datasources:
+#             url: http://prometheus-operated.central-monitoring-system:9090/
+#   clusterName: central
+# #- name: edge-clusters
+# #  helm:
+# #    values:
+# #      grafana:
+# #        enabled: true
+# #  clusterSelector:
+# #    matchLabels:
+# #      role: edge
 
-dependsOn:
-  - name: monitoring-all-monitoring-all-cert-manager-issuer
-  - name: monitoring-all-monitoring-all-monitoring-crd
+# dependsOn:
+#   - name: monitoring-all-monitoring-all-cert-manager-issuer
+#   - name: monitoring-all-monitoring-all-monitoring-crd
