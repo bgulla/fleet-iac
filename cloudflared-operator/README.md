@@ -56,3 +56,6 @@ Chances are, you are trying to use a tunnel that already exists. Rather than ite
 curl "https://api.cloudflare.com/client/v4/user/tokens/verify" \
      -H "Authorization: Bearer <token>"
 ```
+
+### Wildcard DNS?
+[YES](https://github.com/adyanth/cloudflare-operator/blob/main/docs/configuration.md#tunnelbinding)
