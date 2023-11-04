@@ -1,0 +1,55 @@
+---
+loki:
+  enabled: true
+  isDefault: true
+  
+  url: http://{{(include "loki.serviceName" .)}}:{{ .Values.loki.service.port }}
+  
+  readinessProbe:
+    httpGet:
+      path: /ready
+      port: http-metrics
+    initialDelaySeconds: 45
+  livenessProbe:
+    httpGet:
+      path: /ready
+      port: http-metrics
+    initialDelaySeconds: 45
+  datasource:
+    jsonData: "{}"
+    uid: ""
+
+promtail:
+  enabled: true
+  serviceMonitor:
+    enabled: true
+  config:
+    logLevel: info
+    serverPort: 3101
+    clients:
+
+      - url: http://{{ .Release.Name }}:3100/loki/api/v1/push
+
+
+grafana:
+  enabled: true
+  sidecar:
+    datasources:
+      label: ""
+      labelValue: ""
+      enabled: true
+      maxLines: 1000
+  image:
+    tag: 8.3.5
+  ingress:
+    enabled: true
+    # annotations:
+    #   kubernetes.io/ingress.class: nginx
+    #   nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    hosts:
+      - grafana.example.com
+  datasources:
+    Loki:
+      type: loki
+      access: proxy
+      url: http://loki.logging:3100

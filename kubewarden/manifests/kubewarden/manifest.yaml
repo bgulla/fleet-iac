@@ -1,0 +1,49 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: kubewarden 
+---
+# helm install --wait -n kubewarden --create-namespace kubewarden-crds kubewarden/kubewarden-crds
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: kubewarden-crds
+  namespace: kubewarden
+spec:
+  repo: https://charts.kubewarden.io
+  chart: kubewarden-crds
+  targetNamespace: kubewarden
+---
+
+# helm install --wait -n kubewarden kubewarden-controller --set "common.cattle.systemDefaultRegistry=YOUR_REGISTRY_HERE" kubewarden/kubewarden-controller
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: kubewarden-controller
+  namespace: kubewarden
+spec:
+  repo: https://charts.kubewarden.io
+  chart: kubewarden-controller
+  targetNamespace: kubewarden
+  # valuesContent: |-
+  #   common:
+  #     cattle:
+  #       systemDefaultRegistry: "harbor.lark.lol"
+        
+---
+#helm install --wait -n kubewarden kubewarden-defaults --set "common.cattle.systemDefaultRegistry=YOUR_REGISTRY_HERE" kubewarden/kubewarden-defaults
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: kubewarden-defaults
+  namespace: kubewarden
+spec:
+  repo: https://charts.kubewarden.io
+  chart: kubewarden-defaults
+  targetNamespace: kubewarden
+  # valuesContent: |-
+  #   common:
+  #     cattle:
+  #       systemDefaultRegistry: "harbor.lark.lol"
+        

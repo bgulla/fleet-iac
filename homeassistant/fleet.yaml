@@ -1,0 +1,5 @@
+defaultNamespace: homeassistant
+helm:
+  repo: https://bgulla.github.io/charts/
+  chart: homeassistant
+  releaseName: homeassistant

@@ -1,0 +1,56 @@
+# sample.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: whoami
+spec:
+  selector:
+    matchLabels:
+      app: whoami
+  template:
+    metadata:
+      labels:
+          app: whoami
+    spec:
+      containers:
+        - name: whoami
+          image: traefik/whoami
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: whoami
+spec:
+  selector:
+    app: whoami
+  ports:
+    - port: 80
+      targetPort: 80
+# ---
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: whoami-2  # Sample service, points to the same deployment
+# spec:
+#   selector:
+#     app: whoami
+#   ports:
+#     - port: 80
+#       targetPort: 80
+---
+apiVersion: networking.cfargotunnel.com/v1alpha1
+kind: TunnelBinding
+metadata:
+  name: whoami-cluster-tun
+subjects:
+  - name: whoami
+  # - name: whoami-2  # Points to the second service
+tunnelRef:
+  kind: ClusterTunnel
+  name: k3s-cluster-tunnel

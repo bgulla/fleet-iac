@@ -1,0 +1,7 @@
+defaultNamespace: logging
+helm:
+  releaseName: loki-stack
+  chart: loki-stack
+  repo: https://grafana.github.io/helm-charts
+  valuesFiles:
+  - values.yaml

@@ -1,0 +1,16 @@
+apiVersion: ui.cattle.io/v1
+kind: NavLink
+metadata:
+  name: openwebrx-http
+spec:
+  label: SDR Radio
+  target: _blank
+  toService:
+    name: openwebrx
+    namespace: openwebrx
+    port: '8073'
+    scheme: http
+
+
+
+
