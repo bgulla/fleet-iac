@@ -10,4 +10,4 @@ spec:
   set:
     clientInfoSecret.name: synology-creds
     clientInfoSecret.create: "false"
-    
+    volumeSnapshotClasses.delete.deletionPolicy: Delete
