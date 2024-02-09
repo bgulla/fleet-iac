@@ -12,3 +12,6 @@ spec:
     clientInfoSecret.create: "false"
     volumeSnapshotClasses.delete.deletionPolicy: Delete
     # images.plugin.image: bgulla/synology-csi 
+    images.plugin.pullPolicy: Always
+    # Defaults to {{ $.Chart.AppVersion }} if empty or not present:
+    images.plugin.tag: "v1.1.3"
