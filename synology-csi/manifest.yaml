@@ -11,4 +11,4 @@ spec:
     clientInfoSecret.name: synology-creds
     clientInfoSecret.create: "false"
     volumeSnapshotClasses.delete.deletionPolicy: Delete
-    images.plugin.image: bgulla/synology-csi 
+    # images.plugin.image: bgulla/synology-csi 
