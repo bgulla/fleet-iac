@@ -1,0 +1,7 @@
+defaultNamespace: kube-system
+helm:
+  repo: https://rke2-charts.rancher.io
+  chart: rke2-charts
+  releaseName: multus-helm
+  valuesFiles:
+  - ./multus-values.yaml
