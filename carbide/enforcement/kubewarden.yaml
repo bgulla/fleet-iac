@@ -4,7 +4,7 @@ metadata:
   name: verify-image-signatures
 spec:
   mode: protect
-  module: harbor.lark.lol/policies/verify-image-signatures:v0.1.7
+  module: ghcr.io/kubewarden/policies/verify-image-signatures:v0.1.7
   mutating: true
   policyServer: default
   rules:
