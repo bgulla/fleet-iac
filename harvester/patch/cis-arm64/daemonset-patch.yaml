@@ -1,0 +1,11 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: harvester-csi-driver
+  namespace: kube-system
+spec:
+  template:
+    spec:
+      containers:
+      - name: harvester-csi-driver
+        image: rancher/harvester-csi-driver:v0.1.7
